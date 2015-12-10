@@ -1,11 +1,13 @@
 #!/usr/bin/env python
+from __future__ import division
 import re
 import math
 
 def getwords(doc):
     spl = re.compile('\\W*')
     words = spl.split(doc)
-    return dict([(x,1) for x in words if len(x)>2 and len(x)<20])
+    #word filter
+    return dict([(x.lower(),1) for x in words if len(x)>2 and len(x)<15])
 
 class Classifier(object):
     def __init__(self, getfeatures, filename = None):
@@ -25,17 +27,17 @@ class Classifier(object):
     def fcount(self, f, cat):
         if f in self.fc and cat in self.fc[f]:
             return float(self.fc[f][cat])
-        return 0,0
+        return 0.0
     
     def catcount(self, cat):
         if cat in self.cc:
             return float(self.cc[cat])
-        return 0
+        return 0.0
 
     def totalcount(self):
         return sum(self.cc.values())
 
-    def categor(self):
+    def categories(self):
         return self.cc.keys()
 
     def train(self, item, cat):
@@ -48,25 +50,39 @@ class Classifier(object):
     def fprob(self, f, cat):
         if self.catcount(cat) == 0:
             return 0
-        else:
-            return self.fcount(f, cat)/self.catcount(cat)
+        return (self.fcount(f, cat) / self.catcount(cat))
 
-    def weightedprob(self,f,cat,prf,weight=1.0,ap=0.5):
+    def weightedprob(self, f, cat, prf, weight=1.0, ap=0.5):
         basicprob=prf(f,cat)
-        totals=sum([self.fcount(f,c) for c in self.categories()])
+        totals = sum([self.fcount(f,c) for c in self.categories()])
         bp=((weight*ap)+(totals*basicprob))/(weight+totals)
         return bp
 
+class bayes(Classifier):
+    def docprob(self, item, cat):
+        features = self.getfeatures(item)
+        p = 1
+        for f in features:
+            p *= self.weightedprob(f,cat,self.fprob)
+        return p
+
+    def prob(self, item, cat):
+        catprob = self.catcount(cat)/self.totalcount()
+        docprob = self.docprob(item,cat)
+        return docprob*catprob
+
 
 if __name__ == '__main__':
-    cl = Classifier(getwords)
-    cl.train('hello, everyone i want you', 'good')
-    cl.train('hello, everyone i want fuck you', 'bad')
-    cl.train('fuck you get out!','bad')
-    print 'fc'
-    print cl.fc 
-    print '\n'
-    print 'cc'
-    print cl.cc
-    
+    cla = bayes(getwords)
+    f1 = open('_dataset_')
+    f2 = open('_dataset_2')
+    for x in f1:
+        cla.train(x,'bad')
+    for y in f2:
+        cla.train(y,'good')
+    print cla.fcount('brave','good')
+    print cla.weightedprob('brave','good',cla.fprob)
+    print cla.prob('kind is good nature', 'good')
+    print cla.prob('kind is good nature', 'bad')
+
 
