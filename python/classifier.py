@@ -14,7 +14,7 @@ class Classifier(object):
         self.fc = {}
         self.cc = {}
         self.getfeatures = getfeatures
-    
+
     def incf(self, f, cat):
         self.fc.setdefault(f,{})
         self.fc[f].setdefault(cat, 0)
@@ -28,7 +28,7 @@ class Classifier(object):
         if f in self.fc and cat in self.fc[f]:
             return float(self.fc[f][cat])
         return 0.0
-    
+
     def catcount(self, cat):
         if cat in self.cc:
             return float(self.cc[cat])
@@ -80,9 +80,20 @@ if __name__ == '__main__':
         cla.train(x,'bad')
     for y in f2:
         cla.train(y,'good')
-    print cla.fcount('brave','good')
-    print cla.weightedprob('brave','good',cla.fprob)
-    print cla.prob('kind is good nature', 'good')
-    print cla.prob('kind is good nature', 'bad')
+    print cla.prob('I Love You','good')
+    print cla.prob('I Love You','bad')
+    print cla.prob('Where there is a will, there is a way.','good')
+    print cla.prob('Where there is a will, there is a way.','bad')
+    print cla.prob('In order to be irreplaceable,one must always be different','good')
+    print cla.prob('In order to be irreplaceable, one must always be different','bad')
+    print cla.prob('Either you run the day,or the day runs you.','good')
+    print cla.prob('Either you run the day,or the day runs you.','bad')
+    print cla.prob('Be honest rather clever','good')
+    print cla.prob('Be honest rather clever','bad')
+
+    #print cla.fcount('brave','good')
+    #print cla.weightedprob('brave','good',cla.fprob)
+    #print cla.prob('kind is good nature', 'good')
+    #print cla.prob('kind is good nature', 'bad')
 
 

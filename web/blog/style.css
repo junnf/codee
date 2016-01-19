@@ -1,0 +1,69 @@
+body{
+    height:100%;
+    width:100%;
+}
+
+.middle {
+    margin:0em;
+    padding:0.2em;
+    width:100%;
+    height:80%;
+}
+
+#lateral {
+    width:10%;
+    height:80%;
+    float:left;
+    margin:10px;
+    padding:5px 5px;
+}
+
+#lateral h2 {
+    line-height:0.7em;
+    font-size:1.5em;
+
+}
+
+#lateral p {
+    border:none;
+    margin-top:0;
+    padding:0.5em;
+    /* border: 1px solid gray; */
+    text-indent:1em;
+}
+
+#main {
+    width:70%;
+    height:80%;
+    float:left;
+    padding:0em;
+    margin:10px;
+}
+
+
+.top {
+    width:80%;
+    height:0.8em;
+    margin-bottom:1.5em;
+    margin-left:0.5em;
+    /* padding-left:0.5em; */
+}
+
+.top p{
+    font-size:2em;
+}
+
+.bottom {
+    width:80%
+    padding:1.5em
+    margin-top:55555em;
+    clear:left;
+}
+
+.hide {
+    font-family: Arial, "MS Trebuchet", sans-serif;
+    text-decoration:line-through;
+    color:#999999;
+}
+
+
