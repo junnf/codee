@@ -3,6 +3,11 @@
         <title>Welcome Back!</title>
     </head>
     <body>
-        <h1>Welcome back, {{ user }}</h1>
+        <p>Welcome back, {{ user }}</p>
+        <div class="text-list">
+            {% for t in text %} 
+            <p>{{t['textname']}}</p>
+            {% end %}
+        </div>
     </body>
 </html>

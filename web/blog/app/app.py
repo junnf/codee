@@ -10,7 +10,6 @@
 
 import os.path
 import logging
-import MySQLdb
 import torndb
 import base64, uuid
 
@@ -24,10 +23,14 @@ import tornado.options
 from tornado.options import define, options
 
 class Application(tornado.web.Application):
+
     def __init__(self):
         handlers = [
                 (r'/login', BlogloginHandler),
-                (r'/home', BlogHandler)
+                (r'/home', BlogHandler),
+                #  (r'/textpush', BlogPush),
+                (r'/register',BlogRegisterHandler),
+                (r'/logout',BlogLogoutHandler),
                 ]
 
         settings = {
@@ -41,6 +44,7 @@ class Application(tornado.web.Application):
         super(Application, self).__init__(handlers, **settings)
         self.db = torndb.Connection('127.0.0.1','blog','root','ljn7168396123')
 
+
 class BasicHandler(tornado.web.RequestHandler):
 
     def get_current_user(self):
@@ -51,18 +55,39 @@ class BasicHandler(tornado.web.RequestHandler):
     def db(self):
         return self.application.db
 
-    def get(self):
-        pass
-
-    def post(self):
-        pass
-
 
 class BlogHandler(BasicHandler):
 
     @tornado.web.authenticated
     def get(self):
-        self.render('index.html',user=self.current_user)
+        #  _get = self.db.query('select * from text')
+        #  _text = _get[:5]
+        #  self.render('index.html',user=self.current_user, text = _text)
+        pass
+
+
+class BlogRegisterHandler(BasicHandler):
+
+    def get(self):
+        self.render('register.html')
+
+    def post(self):
+        _username = self.get_argument('user')
+        _password = self.get_argument('password')
+        _get = self.db.query('select * from user where username = "{}"'.format(_username))
+        if _get == []:
+            self.db.execute("insert into user values('{}','{}');".format(_username, _password))
+        else:
+            self.write("<html><body><p>{} is used by other</p></body></html>".format(_username))
+
+class BlogLogoutHandler(BasicHandler):
+
+    def get(self):
+        print self.get_current_user()
+        self.clear_cookie("user")
+        print self.get_current_user()
+
+
 
 
 class BlogloginHandler(BasicHandler):
