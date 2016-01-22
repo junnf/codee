@@ -30,6 +30,7 @@ class Application(tornado.web.Application):
                 (r'/home', BlogHandler),
                 (r'/register',BlogRegisterHandler),
                 (r'/logout',BlogLogoutHandler),
+                (r'/file',BlogUploadHandler),
                 ]
 
         settings = {
@@ -53,6 +54,23 @@ class BasicHandler(tornado.web.RequestHandler):
     @property
     def db(self):
         return self.application.db
+
+
+class BlogUploadHandler(BasicHandler):
+
+    def get(self):
+        self.render('fileloader.html')
+
+    def post(self):
+        upload_path=os.path.join(os.path.dirname(__file__),'files')
+        print upload_path
+        file_metas=self.request.files['file']
+        for meta in file_metas:
+            filename=meta['filename']
+            filepath=os.path.join(upload_path,filename)
+            with open(filepath,'wb') as up:
+                up.write(meta['body'])
+            self.write('finished!')
 
 
 class BlogHandler(BasicHandler):
