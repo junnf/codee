@@ -9,7 +9,7 @@
 """
 
 import os.path
-import logging
+#import logging
 import torndb
 import base64, uuid
 
@@ -59,10 +59,24 @@ class BlogHandler(BasicHandler):
 
     @tornado.web.authenticated
     def get(self):
-        #  _get = self.db.query('select * from text')
+        #_get = self.db.query('select * from text')
         #  _text = _get[:5]
-        #  self.render('index.html',user=self.current_user, text = _text)
-        pass
+        #  #  self.render('index.html',user=self.current_user, text = _text)
+        print self.get_current_user()
+        _t = self.db.query("select userid from user where username = '{}'".format(self.get_current_user()))
+        _id = _t[0]['userid']
+        _count = self.db.query('select count(*) from text where userid = {}'.format(_id))[0]['count(*)']
+        if _count < 5 :
+            if _count == 0:
+                self.render('index.html')
+                return
+            _get = self.db.query('select textname, content, edittime from text where \
+            userid = {}'.format(_id))
+            self.render('index.html', article = _get)
+        else:
+            _get = self.db.query('select textname, content, edittime from text where \
+            userid = {}'.format(_id))
+            self.render('index.html', article = _get[:5])
 
 
 class BlogRegisterHandler(BasicHandler):
@@ -78,6 +92,7 @@ class BlogRegisterHandler(BasicHandler):
             self.db.execute("insert into user values('{}','{}');".format(_username, _password))
         else:
             self.write("<html><body><p>{} is used by other</p></body></html>".format(_username))
+
 
 class BlogLogoutHandler(BasicHandler):
 
@@ -101,7 +116,8 @@ class BlogloginHandler(BasicHandler):
                 self.set_secure_cookie("user", login_user)
                 self.redirect('/home')
         except:
-            self.write("<html><body><p>your password is error</p></body></html>")
+            #  self.write("<html><body><p>your password is error</p></body></html>")
+            self.render('errorlogin.html')
 
 
 def main():

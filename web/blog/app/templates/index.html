@@ -1,13 +1,22 @@
+<!DOCTYPE>
 <html>
     <head>
         <title>Welcome Back!</title>
     </head>
     <body>
-        <p>Welcome back, {{ user }}</p>
+        <p>Welcome back</p>
         <div class="text-list">
-            {% for t in text %} 
-            <p>{{t['textname']}}</p>
+            {% for t in article%} 
+                <div>
+                    <p>t['textname']<span>t['edittime']</span></p> 
+                    <p>t['content']</p>
+                </div>
             {% end %}
+        </div>
+        <div>
+            <form name="logout" action="/logout" method="get">
+                <input type="submit" value="注销" />
+            </form>
         </div>
     </body>
 </html>
