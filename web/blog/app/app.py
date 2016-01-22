@@ -28,7 +28,6 @@ class Application(tornado.web.Application):
         handlers = [
                 (r'/login', BlogloginHandler),
                 (r'/home', BlogHandler),
-                #  (r'/textpush', BlogPush),
                 (r'/register',BlogRegisterHandler),
                 (r'/logout',BlogLogoutHandler),
                 ]
@@ -86,8 +85,6 @@ class BlogLogoutHandler(BasicHandler):
         print self.get_current_user()
         self.clear_cookie("user")
         print self.get_current_user()
-
-
 
 
 class BlogloginHandler(BasicHandler):
