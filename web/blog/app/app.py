@@ -26,11 +26,13 @@ class Application(tornado.web.Application):
 
     def __init__(self):
         handlers = [
+                (r'/', HomeHandler),
                 (r'/login', BlogloginHandler),
                 (r'/home', BlogHandler),
                 (r'/register',BlogRegisterHandler),
                 (r'/logout',BlogLogoutHandler),
                 (r'/file',BlogUploadHandler),
+                (r'.*',ErrorHandler),
                 ]
 
         settings = {
@@ -41,9 +43,15 @@ class Application(tornado.web.Application):
             "static_path":os.path.join(os.path.dirname(__file__), "static"),
             "debug":True,
             }
+
         super(Application, self).__init__(handlers, **settings)
         self.db = torndb.Connection('127.0.0.1','blog','root','ljn7168396123')
 
+
+class ErrorHandler(tornado.web.RequestHandler):
+
+    def get(self):
+        self.render('404.html')
 
 class BasicHandler(tornado.web.RequestHandler):
 
@@ -57,7 +65,7 @@ class BasicHandler(tornado.web.RequestHandler):
 
 
 class BlogUploadHandler(BasicHandler):
-
+    """File Upload Test"""
     def get(self):
         self.render('fileloader.html')
 
@@ -71,6 +79,18 @@ class BlogUploadHandler(BasicHandler):
             with open(filepath,'wb') as up:
                 up.write(meta['body'])
             self.write('finished!')
+
+
+class HomeHandler(BasicHandler):
+
+    """Docstring for HomeHandler. """
+
+    def get(self):
+        self.render('home.html')
+
+    def post(self):
+        """redirect to loginhandler"""
+        self.render('login.html')
 
 
 class BlogHandler(BasicHandler):
@@ -115,9 +135,7 @@ class BlogRegisterHandler(BasicHandler):
 class BlogLogoutHandler(BasicHandler):
 
     def get(self):
-        print self.get_current_user()
         self.clear_cookie("user")
-        print self.get_current_user()
 
 
 class BlogloginHandler(BasicHandler):
