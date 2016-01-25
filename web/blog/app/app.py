@@ -51,7 +51,7 @@ class Application(tornado.web.Application):
 class ErrorHandler(tornado.web.RequestHandler):
 
     def get(self):
-        self.render('base.html',page_title = "aaAAaa")
+        self.render('404.html')
 
 class BasicHandler(tornado.web.RequestHandler):
 
@@ -121,10 +121,10 @@ class BlogRegisterHandler(BasicHandler):
 
     def post(self):
         _username = self.get_argument('user')
-        _password = self.get_argument('password')
+        _password = self.get_argument('pw')
         _get = self.db.query('select * from user where username = "{}"'.format(_username))
         if _get == []:
-            self.db.execute("insert into user values('{}','{}');".format(_username, _password))
+            self.db.execute("insert into user values(NULL,'{}','{}');".format(_username, _password))
         else:
             self.write("<html><body><p>{} is used by other</p></body></html>".format(_username))
 
