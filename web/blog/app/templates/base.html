@@ -1,25 +1,25 @@
-<!DOCTYPE>
 <html>
+
 <head>
-    <title>Blog<title>
+    <title>Blog</title>
     <link rel="stylesheet" href="{{ static_url("css/style.css") }}" />
 </head>
 <body>
     <div id="container">
-        <header>
-            {% block header %}<h1>Burt's Books</h1>{% end %}
+        <header class="header">
+            {% block header %}<h2>junn's Blog</h2>{% end %}
         </header>
-        <div id="main">
+        <div class="main">
             <div id="content">
                 {% block body %}{% end %}
             </div>
         </div>
-        <footer>
+        <footer class="footer">
             {% block footer %}
                 <p>Please Connect us</p>
             {% end %}
         </footer>
     </div>
-     <script src="{{ static_url("js/script.js") }}"></script> 
+    <script src="{{ static_url("js/script.js") }}"></script>
     </body>
 </html>

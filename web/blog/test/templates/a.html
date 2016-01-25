@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>A</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            {% block header %}<h1>Burt's Books</h1>{% end %}
+        </header>
+        <div id="main">
+            <div id="content">
+                {% block body %}
+                <p>sss</p>
+                {% end %}
+            </div>
+        </div>
+        <footer>
+            {% block footer %}
+                <p>
+    For more information about our selection, hours or events, please email us at
+                </p>
+            {% end %}
+        </footer>
+    </div>
+    </body>
+</html>

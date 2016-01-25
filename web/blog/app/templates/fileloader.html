@@ -1,10 +1,9 @@
-<html>
-    <head><title>Upload File</title>title></head>
-    <body>
+{% extends "base.html" %}
+{% block body %}
+    <div>
         <form action='file' enctype="multipart/form-data" method='post'>
             {% raw xsrf_form_html() %}
             <input type='file' name='file'/><br/>
             <input type='submit' value='submit'/>
-        </form>
-    </body>
-</html>
+    </div>
+{% end %}

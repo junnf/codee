@@ -1,16 +1,12 @@
-<!DOCTYPE>
-<html>
-    <head>
-    </head>
-    <body>
+{ % extends "base.html" % }
+    { % block body % }
         <div class="register">
             <form method="post" action="/register">
             {% raw xsrf_form_html() %}
-            <p>User<br><input type="text" name="user"></p>
-            <p>Password<br><input type="password" name="password"></p>
-            <p>Password Again<input type="password" name="password2"></p>
+                <p>User<br><input type="text" name="user"></p>
+                <p>Password<br><input type="password" name="password"></p>
+                <p>Password Again<input type="password" name="password2"></p>
             <input type="submit">
             </form>
         </div>
-    </body>
-</html>
+    { % end % }

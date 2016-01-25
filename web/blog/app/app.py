@@ -51,7 +51,7 @@ class Application(tornado.web.Application):
 class ErrorHandler(tornado.web.RequestHandler):
 
     def get(self):
-        self.render('404.html')
+        self.render('base.html',page_title = "aaAAaa")
 
 class BasicHandler(tornado.web.RequestHandler):
 
@@ -86,7 +86,7 @@ class HomeHandler(BasicHandler):
     """Docstring for HomeHandler. """
 
     def get(self):
-        self.render('home.html')
+        self.render('base.html')
 
     def post(self):
         """redirect to loginhandler"""
@@ -97,9 +97,6 @@ class BlogHandler(BasicHandler):
 
     @tornado.web.authenticated
     def get(self):
-        #_get = self.db.query('select * from text')
-        #  _text = _get[:5]
-        #  #  self.render('index.html',user=self.current_user, text = _text)
         print self.get_current_user()
         _t = self.db.query("select userid from user where username = '{}'".format(self.get_current_user()))
         _id = _t[0]['userid']
