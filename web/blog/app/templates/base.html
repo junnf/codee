@@ -1,0 +1,25 @@
+<!DOCTYPE>
+<html>
+<head>
+    <title>Blog<title>
+    <link rel="stylesheet" href="{{ static_url("css/style.css") }}" />
+</head>
+<body>
+    <div id="container">
+        <header>
+            {% block header %}<h1>Burt's Books</h1>{% end %}
+        </header>
+        <div id="main">
+            <div id="content">
+                {% block body %}{% end %}
+            </div>
+        </div>
+        <footer>
+            {% block footer %}
+                <p>Please Connect us</p>
+            {% end %}
+        </footer>
+    </div>
+     <script src="{{ static_url("js/script.js") }}"></script> 
+    </body>
+</html>
