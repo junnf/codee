@@ -121,7 +121,9 @@ class BlogRegisterHandler(BasicHandler):
 
     def post(self):
         _username = self.get_argument('user')
-        _password = self.get_argument('pw')
+        _password = self.get_argument('password')
+        if _password.strip() == '':
+            return
         _get = self.db.query('select * from user where username = "{}"'.format(_username))
         if _get == []:
             self.db.execute("insert into user values(NULL,'{}','{}');".format(_username, _password))

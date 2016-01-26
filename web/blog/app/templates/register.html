@@ -1,10 +1,10 @@
 {% extends "base.html" %}
     {% block body %}
         <div>
-            <form id="register" onsubmit="return dosubmit()" method="post" action="/register">
-            {% raw xsrf_form_html() %}
+            <form id="register" onsubmit="return dosubmit();" method="post" action="/register">
+                {% raw xsrf_form_html() %}
                 <p>User<br><input type="text" name="user"></p>
-                <p>Password<br><input id="pswd" type="password" name="pw"></p>
+                <p>Password<br><input id="pswd" type="password"></p>
                 <p>Password Again<input id="pswd1" type="password"></p>
                 <p><input id="pswdmd5" type="hidden" name="password"></p>
                 <button type="submit">submit</button>
