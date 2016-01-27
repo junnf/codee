@@ -1,0 +1,33 @@
+#container {
+    width:100%;
+    background:#FFFFFF;
+    /* background:url('darkpassage.jpg'); */
+    font-family: Arial, "MS Trebuchet", sans-serif;
+    padding:0px;
+    margin:0px;
+}
+.header {
+    width:100%;
+    margin: 0px;
+    position:left;
+    padding:0px;
+    background:#6959CD;
+    height: 150px;
+}
+.hmain {
+    margin:0px;
+    padding:0px;
+    font-size:4em;
+    color: #FFFFFF;
+}
+
+.hmain-tail {
+    font-size:1em;
+    color:#FFFFFF;
+    text-align:right;
+}
+
+.hmain-tail-middle {
+    font-size:1em;
+    color:#FFFFFF;
+}
