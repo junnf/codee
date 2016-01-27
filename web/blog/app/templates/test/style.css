@@ -23,11 +23,39 @@
 
 .hmain-tail {
     font-size:1em;
+    letter-spacing: 0.4em;
     color:#FFFFFF;
     text-align:right;
 }
 
 .hmain-tail-middle {
     font-size:1em;
+    letter-spacing: 0.7em;
     color:#FFFFFF;
+}
+.footer {
+    background:#6959CD;
+    color:#FFFFFF;
+    padding:0em;
+    margin:0em;
+    height:30px;
+    width:100%;
+    float:left;
+
+}
+
+.body {
+    border:1px solid #000;
+    margin:5px;
+    width:70%;
+    height:500px;
+    float:left;
+}
+
+.ce {
+    border:1px solid #000;
+    margin:5px;
+    width:15%;
+    height:500px;
+    float: left;
 }

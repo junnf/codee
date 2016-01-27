@@ -1,6 +1,6 @@
 {% extends "base.html" %}
     {% block body %}
-        <div>
+        <div class="body">
             <form id="register" onsubmit="return dosubmit();" method="post" action="/register">
                 {% raw xsrf_form_html() %}
                 <p>User<br><input type="text" name="user"></p>

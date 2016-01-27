@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
 {% block body %}
+<div class="body" >
             {% for t in article %}
                 <div>
-                    <p>t['textname']<span>t['edittime']</span></p> 
-                    <p>t['content']</p>
+                    <p>{{t['textname']}}<span>{{t['edittime']}}</span></p> 
+                    <p>{{t['content']}}</p>
                 </div>
             {% end %}
         <div>
@@ -12,4 +13,5 @@
                 <input type="submit" value="注销" />
             </form>
         </div>
+</div>
 {% end %}

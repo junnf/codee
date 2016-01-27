@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body %}
-    <div>
+    <div class="body">
         <form action='file' enctype="multipart/form-data" method='post'>
             {% raw xsrf_form_html() %}
             <input type='file' name='file'/><br/>

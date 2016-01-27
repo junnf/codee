@@ -1,6 +1,6 @@
 {% extends "base.html" %}
     {% block body %}
-        <div class="enter">
+        <div class="body">
             <form action="/login" method="POST">
                 {% raw xsrf_form_html() %}
                 <p>Username: <input type="text" name="username" /></p>

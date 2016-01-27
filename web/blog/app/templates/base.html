@@ -1,28 +1,32 @@
-<html>
+<html id="container">
 
 <head>
     <title>Blog</title>
-    <link rel="stylesheet" href="{{ static_url("css/style.css") }}" />
+    <link rel="stylesheet" href="../static/css/style.css"/>
 </head>
-<body>
-    <div id="container">
+<body class="main-body">
+    <div id="containera">
         <header class="header">
-            {% block header %}<h2>junn's Blog</h2>{% end %}
+        {% block header %}
+            <h1 class="hmain">Blog</h1>
+            <p class="hmain-tail">Philosophy  Magic  Art</p>
+        {% end %}
         </header>
         <div class="main">
             <div id="content">
-                {% block body %}{% end %}
+                {% block body %}
+                <div class="ce">
+
+                </div>
+                <div class="body">
+
+                </div>
+                {% end %}
             </div>
         </div>
         <footer class="footer">
-            {% block footer %}
-                <p>Please Connect us</p>
-            {% end %}
+            Please Connect us
         </footer>
     </div>
-    {% block script %}
-    {% end %}
-    <script src="{{ static_url("js/script.js") }}"></script>
-    <script src="{{ static_url("js/md5.js") }}"></script>
     </body>
 </html>
