@@ -22,3 +22,17 @@ SELECT product_cd, SUM(a) x from account where status = 'ACTIVE' GROUP BY produc
 =any 与 in等效
 
 关联子查询，非关联子查询
+
+if-condition Logic
+SEARCH-class:
+
+CASE
+    WHEN C1 THEN E1
+    WHEN C2 THEN E2
+END
+
+SELECT c.a CASE WHEN c.x = 'a' THEN CONCAT(i.aa,i.bb) WHEN c.x = 'b' THEN c.name FROM zzz c LEFT OUTER JOIN xxx i ON .....;
+
+
+索引，视图，元数据
+...
