@@ -5,6 +5,5 @@
 while read line;
 do
     echo $line;
-    echo "aaa"
 done < $1
 
