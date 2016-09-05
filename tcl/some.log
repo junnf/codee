@@ -1,0 +1,1 @@
+root      1492  0.0  0.2  12396  9300 ?        S    19:20   0:00 /sbin/dhclient -d -sf /usr/lib/nm-dhcp-client.action -pf /var/run/dhclient-wlp3s0.pid -lf /var/lib/NetworkManager/dhclient-c744a846-357f-4899-afb1-f27a4096abbc-wlp3s0.lease -cf /var/lib/NetworkManager/dhclient-wlp3s0.conf wlp3s0
