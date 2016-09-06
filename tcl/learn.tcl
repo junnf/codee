@@ -1,4 +1,6 @@
 #!/bin/tclsh
+package require Thread
+package require Ttrace
 
 #read *.log
 set fldes [open "some.log" ]
